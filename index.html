@@ -2,210 +2,205 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
+<title>RAJA STORE 💎</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Raja Store - Top Up Game</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
 body{
   margin:0;
-  background:#0b0b0b;
+  font-family:Poppins,sans-serif;
+  background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
   color:#fff;
-  font-family:Arial,sans-serif;
-}
-.store-name{
-  font-family:Orbitron;
-  font-size:36px;
-  text-align:center;
-  color:#ffd369;
-  margin:20px;
-  text-shadow:0 0 15px #ff9800;
 }
 .container{
-  max-width:480px;
+  max-width:420px;
   margin:auto;
-  padding:15px;
+  padding:20px;
 }
-.box{
-  background:#111;
+.title{
+  text-align:center;
+  font-size:34px;
+  font-weight:800;
+  letter-spacing:3px;
+  color:#00eaff;
+  text-shadow:0 0 20px #00eaff;
+}
+.card{
+  background:rgba(255,255,255,0.08);
   padding:15px;
   border-radius:15px;
-  margin-bottom:15px;
+  margin-top:15px;
 }
-.game-list{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
+label{
+  font-size:13px;
+  opacity:.8;
 }
-.game{
-  background:#1a1a1a;
-  padding:15px;
-  text-align:center;
-  border-radius:12px;
-  cursor:pointer;
-}
-.game.active{
-  background:#ffb703;
-  color:#000;
-}
-.dm-list{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-}
-.dm{
-  background:#1a1a1a;
-  padding:12px;
-  text-align:center;
-  border-radius:12px;
-  cursor:pointer;
-  box-shadow:0 0 10px rgba(255,215,100,.4);
-}
-.dm.active{
-  background:#ffb703;
-  color:#000;
-}
-.diamond{
-  display:inline-block;
-  animation:float 2s infinite;
-}
-@keyframes float{
-  0%{transform:translateY(0)}
-  50%{transform:translateY(-5px)}
-  100%{transform:translateY(0)}
-}
-input,button{
+input,select,button{
   width:100%;
-  padding:12px;
+  padding:10px;
+  margin-top:6px;
   border:none;
   border-radius:10px;
-  margin-top:8px;
+  font-family:Poppins;
+}
+select,input{
+  background:#111;
+  color:#fff;
 }
 button{
-  background:#ffb703;
-  font-weight:bold;
+  background:#00eaff;
+  color:#000;
+  font-weight:700;
+  margin-top:12px;
 }
-.admin{
-  background:#25d366;
+button:disabled{
+  background:#555;
+  color:#aaa;
+}
+.glow{
+  animation:glow 1.5s infinite alternate;
+}
+@keyframes glow{
+  from{box-shadow:0 0 5px #00eaff;}
+  to{box-shadow:0 0 20px #00eaff;}
+}
+.lunas{
+  background:#00ff88;
+}
+.history{
+  font-size:12px;
+  opacity:.8;
+  margin-top:10px;
+}
+.paybox{
+  background:#000;
+  padding:10px;
+  border-radius:10px;
+  margin-top:8px;
+  font-size:13px;
 }
 </style>
 </head>
 
 <body>
-
-<div class="store-name">RAJA STORE</div>
-
 <div class="container">
 
-<div class="box">
-<h3>Pilih Game</h3>
-<div class="game-list">
-  <div class="game active" onclick="pilihGame('ff',this)">🔥 Free Fire</div>
-  <div class="game" onclick="pilihGame('ml',this)">⚔️ Mobile Legends</div>
-  <div class="game" onclick="pilihGame('pubg',this)">🔫 PUBG</div>
-  <div class="game" onclick="pilihGame('codm',this)">🎯 CODM</div>
-</div>
+<div class="title">RAJA STORE</div>
+
+<div class="card">
+<label>🎮 Pilih Game</label>
+<select id="game" onchange="loadDM()">
+  <option value="">-- Pilih --</option>
+  <option value="Free Fire">Free Fire</option>
+  <option value="Mobile Legends">Mobile Legends</option>
+  <option value="PUBG Mobile">PUBG Mobile</option>
+  <option value="Game Lain">Game Lain</option>
+</select>
+
+<label>💎 Diamond</label>
+<select id="dm" class="glow"></select>
+
+<label>🆔 User ID</label>
+<input id="uid" placeholder="Masukkan ID">
+
+<label>👤 Nickname</label>
+<input id="nick" placeholder="Masukkan Nick">
+
+<label>💳 Metode Pembayaran</label>
+<select id="pay">
+  <option value="DANA">DANA</option>
+  <option value="BSI">BSI</option>
+</select>
+
+<div class="paybox">
+<b>💰 Info Pembayaran</b><br>
+DANA : <b>082274006827</b><br>
+BSI : <b>7286108387</b><br>
+a.n Raja Aulia
 </div>
 
-<div class="box">
-<h3>Pilih Nominal</h3>
-<div class="dm-list" id="dmList"></div>
-</div>
+<label>👤 Nama Pengirim</label>
+<input id="namaRek" placeholder="Isi nama pengirim">
 
-<div class="box">
-<input id="idgame" placeholder="ID Game">
-<input id="server" placeholder="Server (jika ada)">
-<input id="nick" placeholder="Nickname">
-</div>
-
-<div class="box">
-<h3>Pembayaran</h3>
-<p>💳 <b>BSI</b><br>7286108387<br>a.n Raja Aulia</p>
-<p>💳 <b>DANA</b><br>082274006827<br>a.n Raja Aulia</p>
+<label>📸 Upload Bukti Transfer</label>
 <input type="file" id="bukti" accept="image/*">
-<small>⚠️ Upload bukti transfer WAJIB</small>
+
+<button id="orderBtn" onclick="order()" disabled>ORDER VIA WHATSAPP</button>
 </div>
 
-<button onclick="order()">ORDER SEKARANG</button>
-<button class="admin" onclick="lunas()">✔ LUNAS (ADMIN)</button>
+<div class="card">
+<label>🔐 PIN ADMIN (TOMBOL LUNAS)</label>
+<input id="pin">
+<button class="lunas" onclick="setLunas()">TANDAI LUNAS</button>
+<div class="history" id="status">Status: Belum Lunas</div>
+</div>
+
+<div class="card history" id="riwayat"></div>
 
 </div>
 
 <script>
-const WA_ADMIN="6283153033854";
-const PIN_ADMIN="1234";
-let gameAktif="ff";
-let dmAktif=null;
-
-const data={
-ff:[
-"12💎 - 2rb","50💎 - 8rb","70💎 - 10rb",
-"140💎 - 20rb","355💎 - 45rb","720💎 - 93rb",
-"1450💎 - 180rb","2180💎 - 270rb"
-],
-ml:[
-"3💎 - 2rb","5💎 - 2.5rb","12💎 - 5rb",
-"28💎 - 11rb","59💎 - 17rb","85💎 - 23rb",
-"170💎 - 45rb","256💎 - 76rb","Weekly Pass - 30rb"
-],
-pubg:[
-"60 UC - 16rb","325 UC - 79rb","660 UC - 155rb",
-"1800 UC - 399rb","3850 UC - 799rb"
-],
-codm:[
-"80 CP - 15rb","420 CP - 75rb","880 CP - 150rb",
-"2400 CP - 399rb"
-]
+const dmData={
+ "Free Fire":{
+  "12 DM":"2rb","50 DM":"8rb","70 DM":"10rb","140 DM":"20rb",
+  "355 DM":"45rb","720 DM":"93rb","1450 DM":"180rb","2180 DM":"270rb"
+ },
+ "Mobile Legends":{
+  "3 DM":"2rb","5 DM":"2.5rb","12 DM":"5rb","28 DM":"11rb",
+  "59 DM":"17rb","170 DM":"45rb","256 DM":"76rb",
+  "500 DM":"71rb","1000 DM":"142rb"
+ },
+ "PUBG Mobile":{
+  "60 UC":"15rb","325 UC":"75rb","660 UC":"145rb","1800 UC":"380rb"
+ },
+ "Game Lain":{
+  "100 DM":"Pasaran","500 DM":"Pasaran","1000 DM":"Pasaran","2000 DM":"Pasaran"
+ }
 };
 
 function loadDM(){
-  const list=document.getElementById("dmList");
-  list.innerHTML="";
-  dmAktif=null;
-  data[gameAktif].forEach(d=>{
-    const div=document.createElement("div");
-    div.className="dm";
-    div.innerHTML=`<span class="diamond">💎</span><br>${d}`;
-    div.onclick=()=>{
-      document.querySelectorAll(".dm").forEach(x=>x.classList.remove("active"));
-      div.classList.add("active");
-      dmAktif=d;
-    };
-    list.appendChild(div);
-  });
+ let game=document.getElementById("game").value;
+ let dm=document.getElementById("dm");
+ dm.innerHTML="";
+ if(!game) return;
+ for(let k in dmData[game]){
+   let o=document.createElement("option");
+   o.value=k+" - "+dmData[game][k];
+   o.textContent=k+" = "+dmData[game][k];
+   dm.appendChild(o);
+ }
 }
-loadDM();
 
-function pilihGame(g,el){
-  gameAktif=g;
-  document.querySelectorAll(".game").forEach(x=>x.classList.remove("active"));
-  el.classList.add("active");
-  loadDM();
-}
+document.addEventListener("input",()=>{
+ let ok =
+  uid.value &&
+  nick.value &&
+  namaRek.value &&
+  bukti.files.length;
+ orderBtn.disabled=!ok;
+});
 
 function order(){
-  if(!dmAktif || !document.getElementById("bukti").files.length){
-    alert("Lengkapi data & upload bukti TF!");
-    return;
-  }
-  const pesan=
-`ORDER RAJA STORE
-Game: ${gameAktif.toUpperCase()}
-ID: ${idgame.value}
-Server: ${server.value}
-Nick: ${nick.value}
-Nominal: ${dmAktif}`;
-  window.open("https://wa.me/"+WA_ADMIN+"?text="+encodeURIComponent(pesan));
+ let msg=`📦 ORDER BARU - RAJA STORE 💎
+🎮 Game: ${game.value}
+💎 Diamond: ${dm.value}
+🆔 ID: ${uid.value}
+👤 Nick: ${nick.value}
+👤 Pengirim: ${namaRek.value}
+💳 Pembayaran: ${pay.value}
+📸 Bukti TF: Ada
+Terima kasih 🙏`;
+
+ window.open("https://wa.me/6283153033854?text="+encodeURIComponent(msg));
+ riwayat.innerText="Order terakhir:\n"+msg;
 }
 
-function lunas(){
-  const pin=prompt("Masukkan PIN Admin");
-  if(pin===PIN_ADMIN){
-    alert("ORDER DITANDAI LUNAS ✔");
-  }else{
-    alert("PIN SALAH ❌");
-  }
+function setLunas(){
+ if(pin.value=="1234"){
+   status.innerText="Status: LUNAS ✅";
+ }else alert("PIN SALAH");
 }
 </script>
 
