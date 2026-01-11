@@ -2,332 +2,210 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>RAJA STORE - Free Fire Top Up</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raja Store - Top Up Game</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
 
 <style>
 body{
   margin:0;
-  font-family:'Segoe UI',Arial,sans-serif;
-  background:
-    radial-gradient(circle at top, rgba(255,87,34,0.25), transparent 40%),
-    linear-gradient(180deg, rgba(0,0,0,0.8), rgba(0,0,0,0.95)),
-    url('bg.jpg') no-repeat center center fixed;
-  background-size:cover;
-}
-
-/* BRAND */
-.brand{
-  text-align:center;
-  margin-top:30px;
-  font-size:38px;
-  font-weight:900;
-  letter-spacing:5px;
-  color:#ffd700;
-  text-transform:uppercase;
-  animation:glow 2s infinite alternate;
-}
-.brand span{
-  display:block;
-  font-size:12px;
-  letter-spacing:6px;
-  margin-top:8px;
+  background:#0b0b0b;
   color:#fff;
-  opacity:0.85;
+  font-family:Arial,sans-serif;
 }
-@keyframes glow{
-  from{
-    text-shadow:0 0 10px #ff9800,0 0 20px #ff5722;
-  }
-  to{
-    text-shadow:0 0 20px #ffd700,0 0 40px #ff5722;
-  }
-}
-
-/* CONTAINER */
-.container{
-  background:linear-gradient(
-    180deg,
-    rgba(30,30,30,0.95),
-    rgba(0,0,0,0.9)
-  );
+.store-name{
+  font-family:Orbitron;
+  font-size:36px;
+  text-align:center;
+  color:#ffd369;
   margin:20px;
-  padding:24px;
-  border-radius:26px;
-  color:white;
-  box-shadow:
-    0 0 35px rgba(255,152,0,0.35),
-    inset 0 0 20px rgba(255,255,255,0.05);
-  backdrop-filter: blur(10px);
+  text-shadow:0 0 15px #ff9800;
 }
-
-/* FORM */
-label{font-size:14px;}
-input, select{
-  width:100%;
-  padding:14px;
-  margin-top:6px;
-  margin-bottom:14px;
-  border-radius:18px;
-  border:none;
-  background:#1c1c1c;
-  color:white;
-  outline:none;
+.container{
+  max-width:480px;
+  margin:auto;
+  padding:15px;
 }
-
-/* NOMINAL */
-.nominal{
+.box{
+  background:#111;
+  padding:15px;
+  border-radius:15px;
+  margin-bottom:15px;
+}
+.game-list{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+}
+.game{
+  background:#1a1a1a;
+  padding:15px;
+  text-align:center;
+  border-radius:12px;
+  cursor:pointer;
+}
+.game.active{
+  background:#ffb703;
+  color:#000;
+}
+.dm-list{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:10px;
 }
-.nominal button{
-  background:linear-gradient(145deg,#1a1a1a,#0a0a0a);
-  color:#fff;
-  border:1px solid rgba(255,255,255,0.08);
-  padding:16px 6px;
-  border-radius:18px;
-  font-size:13px;
-  transition:0.3s;
-}
-.nominal button:hover{
-  box-shadow:0 0 18px rgba(255,152,0,0.8);
-  transform:translateY(-3px);
-}
-.nominal button.active{
-  background:linear-gradient(145deg,#ff9800,#ff5722);
-  color:#000;
-  box-shadow:0 0 20px rgba(255,152,0,0.95);
-}
-
-/* BUTTON */
-button.main{
-  width:100%;
-  padding:18px;
-  background:linear-gradient(145deg,#ff5722,#ff9800);
-  border:none;
-  border-radius:22px;
-  font-size:17px;
-  font-weight:900;
-  letter-spacing:1px;
-  color:#000;
-  box-shadow:0 0 28px rgba(255,152,0,0.95);
-  transition:0.3s;
-}
-button.main:hover{transform:scale(1.03);}
-
-/* STATUS */
-.status{
-  margin-top:14px;
-  padding:14px;
-  border-radius:18px;
-  background:#1e1e1e;
-  font-weight:bold;
+.dm{
+  background:#1a1a1a;
+  padding:12px;
   text-align:center;
+  border-radius:12px;
+  cursor:pointer;
+  box-shadow:0 0 10px rgba(255,215,100,.4);
 }
-
-/* ADMIN */
-.admin-btn{
+.dm.active{
+  background:#ffb703;
+  color:#000;
+}
+.diamond{
+  display:inline-block;
+  animation:float 2s infinite;
+}
+@keyframes float{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-5px)}
+  100%{transform:translateY(0)}
+}
+input,button{
   width:100%;
-  margin-top:12px;
-  padding:14px;
-  background:linear-gradient(145deg,#43a047,#66bb6a);
-  color:#000;
+  padding:12px;
   border:none;
-  border-radius:18px;
-  font-weight:900;
+  border-radius:10px;
+  margin-top:8px;
 }
-
-/* RIWAYAT */
-.riwayat{
-  background:rgba(255,255,255,0.08);
-  padding:14px;
-  border-radius:16px;
-  font-size:13px;
+button{
+  background:#ffb703;
+  font-weight:bold;
 }
-.order-item{
-  background:linear-gradient(145deg,#111,#000);
-  padding:14px;
-  border-radius:18px;
-  margin-bottom:12px;
-  border-left:4px solid #ff9800;
-}
-.order-item b{color:#00ffcc;}
-
-/* FLOATING WA */
-.wa-floating{
-  position:fixed;
-  bottom:22px;
-  right:22px;
-  background:linear-gradient(145deg,#25D366,#1ebe5d);
-  color:#000;
-  padding:18px 22px;
-  border-radius:50px;
-  font-weight:900;
-  text-decoration:none;
-  box-shadow:
-    0 0 25px rgba(37,211,102,0.95),
-    0 0 45px rgba(37,211,102,0.6);
-  z-index:9999;
-  animation:pulse 1.8s infinite;
-}
-@keyframes pulse{
-  from{box-shadow:0 0 20px rgba(37,211,102,0.7);}
-  to{box-shadow:0 0 40px rgba(37,211,102,1);}
+.admin{
+  background:#25d366;
 }
 </style>
 </head>
 
 <body>
 
-<div class="brand">
-  RAJA STORE
-  <span>FREE FIRE TOP UP</span>
-</div>
+<div class="store-name">RAJA STORE</div>
 
 <div class="container">
 
-<label>ID Game</label>
-<input type="text" id="gameid">
-
-<label>Nickname</label>
-<input type="text" id="nick">
-
-<label>Nominal Diamond</label>
-<div class="nominal">
-  <button onclick="pilihNom(this,'10 Diamond - 2K')">10💎<br>2K</button>
-  <button onclick="pilihNom(this,'20 Diamond - 4K')">20💎<br>4K</button>
-  <button onclick="pilihNom(this,'50 Diamond - 8K')">50💎<br>8K</button>
-  <button onclick="pilihNom(this,'70 Diamond - 11K')">70💎<br>11K</button>
-  <button onclick="pilihNom(this,'100 Diamond - 15K')">100💎<br>15K</button>
-  <button onclick="pilihNom(this,'140 Diamond - 20K')">140💎<br>20K</button>
-  <button onclick="pilihNom(this,'210 Diamond - 28K')">210💎<br>28K</button>
-  <button onclick="pilihNom(this,'355 Diamond - 47K')">355💎<br>47K</button>
-  <button onclick="pilihNom(this,'425 Diamond - 57K')">425💎<br>57K</button>
-  <button onclick="pilihNom(this,'565 Diamond - 75K')">565💎<br>75K</button>
-  <button onclick="pilihNom(this,'720 Diamond - 95K')">720💎<br>95K</button>
-  <button onclick="pilihNom(this,'1000 Diamond - 130K')">1000💎<br>130K</button>
-  <button onclick="pilihNom(this,'Weekly Membership - 30K')">Weekly<br>30K</button>
-  <button onclick="pilihNom(this,'Monthly Membership - 150K')">Monthly<br>150K</button>
-  <button onclick="pilihNom(this,'Level Up Pass - 80K')">Level Up<br>80K</button>
+<div class="box">
+<h3>Pilih Game</h3>
+<div class="game-list">
+  <div class="game active" onclick="pilihGame('ff',this)">🔥 Free Fire</div>
+  <div class="game" onclick="pilihGame('ml',this)">⚔️ Mobile Legends</div>
+  <div class="game" onclick="pilihGame('pubg',this)">🔫 PUBG</div>
+  <div class="game" onclick="pilihGame('codm',this)">🎯 CODM</div>
+</div>
 </div>
 
-<label>Metode Pembayaran</label>
-<select id="metode">
-  <option>BSI - 7286108387 (Raja Aulia)</option>
-  <option>DANA - 082274006827 (Raja Aulia)</option>
-</select>
-
-<label>Upload Bukti Transfer</label>
-<input type="file">
-
-<button class="main" onclick="proses(); simpanOrder(); updateWA();">
-  Proses Pembayaran
-</button>
-
-<div class="status" id="statusText">
-  STATUS: MENUNGGU KONFIRMASI
+<div class="box">
+<h3>Pilih Nominal</h3>
+<div class="dm-list" id="dmList"></div>
 </div>
 
-<button class="admin-btn" onclick="bukaAdmin()">
-  ✔️ Tandai LUNAS (Admin)
-</button>
-
-<h3 style="margin-top:22px;">📜 Riwayat Order</h3>
-<div id="riwayat" class="riwayat">
-  <p>Belum ada order</p>
+<div class="box">
+<input id="idgame" placeholder="ID Game">
+<input id="server" placeholder="Server (jika ada)">
+<input id="nick" placeholder="Nickname">
 </div>
 
+<div class="box">
+<h3>Pembayaran</h3>
+<p>💳 <b>BSI</b><br>7286108387<br>a.n Raja Aulia</p>
+<p>💳 <b>DANA</b><br>082274006827<br>a.n Raja Aulia</p>
+<input type="file" id="bukti" accept="image/*">
+<small>⚠️ Upload bukti transfer WAJIB</small>
 </div>
 
-<a id="waBtn" class="wa-floating" href="#" target="_blank">
-  💬 Chat Admin
-</a>
+<button onclick="order()">ORDER SEKARANG</button>
+<button class="admin" onclick="lunas()">✔ LUNAS (ADMIN)</button>
+
+</div>
 
 <script>
-let nominalDipilih="";
-let orderCount=0;
-let lastOrderDiv=null;
-const PASSWORD_ADMIN="raja123";
-const NO_WA="6283153033854";
+const WA_ADMIN="6283153033854";
+const PIN_ADMIN="1234";
+let gameAktif="ff";
+let dmAktif=null;
 
-function pilihNom(btn,val){
-  document.querySelectorAll(".nominal button")
-    .forEach(b=>b.classList.remove("active"));
-  btn.classList.add("active");
-  nominalDipilih=val;
+const data={
+ff:[
+"12💎 - 2rb","50💎 - 8rb","70💎 - 10rb",
+"140💎 - 20rb","355💎 - 45rb","720💎 - 93rb",
+"1450💎 - 180rb","2180💎 - 270rb"
+],
+ml:[
+"3💎 - 2rb","5💎 - 2.5rb","12💎 - 5rb",
+"28💎 - 11rb","59💎 - 17rb","85💎 - 23rb",
+"170💎 - 45rb","256💎 - 76rb","Weekly Pass - 30rb"
+],
+pubg:[
+"60 UC - 16rb","325 UC - 79rb","660 UC - 155rb",
+"1800 UC - 399rb","3850 UC - 799rb"
+],
+codm:[
+"80 CP - 15rb","420 CP - 75rb","880 CP - 150rb",
+"2400 CP - 399rb"
+]
+};
+
+function loadDM(){
+  const list=document.getElementById("dmList");
+  list.innerHTML="";
+  dmAktif=null;
+  data[gameAktif].forEach(d=>{
+    const div=document.createElement("div");
+    div.className="dm";
+    div.innerHTML=`<span class="diamond">💎</span><br>${d}`;
+    div.onclick=()=>{
+      document.querySelectorAll(".dm").forEach(x=>x.classList.remove("active"));
+      div.classList.add("active");
+      dmAktif=d;
+    };
+    list.appendChild(div);
+  });
+}
+loadDM();
+
+function pilihGame(g,el){
+  gameAktif=g;
+  document.querySelectorAll(".game").forEach(x=>x.classList.remove("active"));
+  el.classList.add("active");
+  loadDM();
 }
 
-function proses(){
-  if(!nominalDipilih){
-    alert("Pilih nominal!");
-  }
-}
-
-function simpanOrder(){
-  let id=gameid.value;
-  let nick=document.getElementById("nick").value;
-  let bayar=metode.value;
-
-  if(!id||!nick||!nominalDipilih){
-    alert("Lengkapi data!");
+function order(){
+  if(!dmAktif || !document.getElementById("bukti").files.length){
+    alert("Lengkapi data & upload bukti TF!");
     return;
   }
-
-  orderCount++;
-  let r=document.getElementById("riwayat");
-  if(orderCount===1) r.innerHTML="";
-
-  let div=document.createElement("div");
-  div.className="order-item";
-  div.innerHTML=`
-    <b>Order #${orderCount}</b><br>
-    ID: ${id}<br>
-    Nick: ${nick}<br>
-    Nominal: ${nominalDipilih}<br>
-    Pembayaran: ${bayar}<br>
-    <span class="status-order">STATUS: MENUNGGU</span>
-  `;
-  r.prepend(div);
-  lastOrderDiv=div;
-}
-
-function bukaAdmin(){
-  let pass=prompt("Password Admin:");
-  if(pass===PASSWORD_ADMIN){
-    lunas();
-  }else{
-    alert("Password salah!");
-  }
+  const pesan=
+`ORDER RAJA STORE
+Game: ${gameAktif.toUpperCase()}
+ID: ${idgame.value}
+Server: ${server.value}
+Nick: ${nick.value}
+Nominal: ${dmAktif}`;
+  window.open("https://wa.me/"+WA_ADMIN+"?text="+encodeURIComponent(pesan));
 }
 
 function lunas(){
-  let s=document.getElementById("statusText");
-  s.innerHTML="STATUS: LUNAS ✔️ DIAMOND DIPROSES";
-  s.style.background="#2e7d32";
-
-  if(lastOrderDiv){
-    lastOrderDiv.querySelector(".status-order").innerText="STATUS: LUNAS ✔️";
+  const pin=prompt("Masukkan PIN Admin");
+  if(pin===PIN_ADMIN){
+    alert("ORDER DITANDAI LUNAS ✔");
+  }else{
+    alert("PIN SALAH ❌");
   }
-}
-
-function updateWA(){
-  let id=gameid.value;
-  let nick=document.getElementById("nick").value;
-  let bayar=metode.value;
-
-  let pesan=
-`Halo Admin Raja Store 👑
-Saya sudah order:
-
-ID Game: ${id}
-Nickname: ${nick}
-Nominal: ${nominalDipilih}
-Pembayaran: ${bayar}
-
-Mohon segera diproses 🙏`;
-
-  document.getElementById("waBtn").href =
-    "https://wa.me/"+NO_WA+"?text="+encodeURIComponent(pesan);
 }
 </script>
 
